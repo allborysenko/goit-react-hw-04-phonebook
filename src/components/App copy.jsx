@@ -18,7 +18,7 @@ export class App extends Component {
   //   if (parsedContacts) {
   //     this.setState({ contacts: parsedContacts });
   //   }
-  }
+  // }
   // componentDidUpdate(prevProps, prevState) {
   //   if (this.state.contacts !== prevState.contacts) {
   //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
@@ -59,21 +59,21 @@ export class App extends Component {
   //   return filterContactsList;
   // };
 
-  render() {
-    const { filter } = this.state;
-    // return (
-    //   <>
-    //     <Section title="Phonebook">
-    //       <Contact onSubmit={this.handleSubmit} />
-    //     </Section>
-    //     <Section title="Contacts">
-    //       <Filter filter={filter} handleChange={this.handleChange} />
-    //       <ContactList
-    //         contacts={this.getFilteredContacts()}
-    //         handleDelete={this.handleDelete}
-    //       />
-    //     </Section>
-    //   </>
-    );
-  }
-}
+//   render() {
+//     const { filter } = this.state;
+//     return (
+//       <>
+//         <Section title="Phonebook">
+//           <Contact onSubmit={this.handleSubmit} />
+//         </Section>
+//         <Section title="Contacts">
+//           <Filter filter={filter} handleChange={this.handleChange} />
+//           <ContactList
+//             contacts={this.getFilteredContacts()}
+//             handleDelete={this.handleDelete}
+//           />
+//         </Section>
+//       </>
+//     );
+//   }
+// }

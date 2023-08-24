@@ -1,45 +1,29 @@
+import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { Contact } from './Contact/Contact';
 import { Section } from './Section/Section';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { useEffect, useState } from 'react';
+
+const getLSContacts = () => {
+  const contacts = localStorage.getItem('contacts');
+  if (contacts !== null) {
+    return JSON.parse(contacts);
+  }
+  return [];
+};
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    const saveContacts = localStorage.getItem('contacts');
-
-    if (saveContacts !== null) {
-      return JSON.parse(saveContacts);
-    }
-    return [];
-  });
+  const [contacts, setContacts] = useState(getLSContacts);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const handleSubmit = e => {
-    const id = nanoid();
-    const name = e.name;
-    const number = e.number;
-    const contactsLists = ([...contacts]);
-
-
-    if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
-      alert(`${name} is already in contacts.`);
-    } else {
-      contactsLists.push({ name, id, number });
-    }
-    setContacts(contactsLists);
-  };
-
   const handleDelete = e => {
-    setContacts(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== e),
-    }));
+    setContacts(contacts.filter(contact => contact.id !== e));
   };
 
   const getFilteredContacts = () => {
@@ -50,10 +34,24 @@ export const App = () => {
     return filterContactsList;
   };
 
+  const handleSubmit = e => {
+    const id = nanoid();
+    const name = e.name;
+    const number = e.number;
+    const contactsLists = [...contacts];
+
+    if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
+      alert(`${name} is already in contacts.`);
+    } else {
+      contactsLists.push({ name, id, number });
+    }
+
+    setContacts(contactsLists);
+  };
+
   const handleChange = e => {
-    const { name, value } = e.target;
-    setContacts({ [name]: value });
-    setFilter({ [name]: value });
+    const { value } = e.target;
+    setFilter(value);
   };
 
   return (

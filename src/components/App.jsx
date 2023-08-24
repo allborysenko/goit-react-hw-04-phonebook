@@ -26,7 +26,7 @@ export const App = () => {
     const name = e.name;
     const number = e.number;
 
-    const contactsLists = setContacts(prevstate => [...prevstate, contacts]);
+    const contactsLists = (prevState => [...prevState, contacts]);
 
     if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
       alert(`${name} is already in contacts.`);

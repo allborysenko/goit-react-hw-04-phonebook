@@ -30,20 +30,20 @@ export class App extends Component {
   //   this.setState({ [name]: value });
   // };
 
-  // handleSubmit = e => {
-  //   const id = nanoid();
-  //   const name = e.name;
-  //   const number = e.number;
-  //   const contactsLists = [...this.state.contacts];
+  handleSubmit = e => {
+    const id = nanoid();
+    const name = e.name;
+    const number = e.number;
+    const contactsLists = [...this.state.contacts];
 
-  //   if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
-  //     alert(`${name} is already in contacts.`);
-  //   } else {
-  //     contactsLists.push({ name, id, number });
-  //   }
+    if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
+      alert(`${name} is already in contacts.`);
+    } else {
+      contactsLists.push({ name, id, number });
+    }
 
-  //   this.setState({ contacts: contactsLists });
-  // };
+    this.setState({ contacts: contactsLists });
+  };
   // handleDelete = e => {
   //   this.setState(prevState => ({
   //     contacts: prevState.contacts.filter(contact => contact.id !== e),

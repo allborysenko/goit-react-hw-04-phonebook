@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Label, Input, Button } from './Contact.styled';
 
-export const Contact = ({ handleSubmitContact }) => {
+export const Contact = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -14,17 +14,11 @@ export const Contact = ({ handleSubmitContact }) => {
   };
 
   const submitForm = e => {
-   
     e.preventDefault();
-    // const form = e.currentTarget;
-    handleSubmitContact({ name, number });
-   
-
-    // form.reset();
+    onSubmit({ name, number });
     setName('');
     setNumber('');
   };
- 
 
   return (
     <form onSubmit={submitForm}>

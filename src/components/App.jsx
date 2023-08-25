@@ -35,13 +35,10 @@ export const App = () => {
   };
 
   const handleSubmitContact = data => {
-
     const id = nanoid();
     const name = data.name;
     const number = data.number;
     const contactsLists = [...contacts];
-
-
 
     const alreadyYetContact = contactsLists.find(
       contact => name === contact.name
@@ -55,7 +52,6 @@ export const App = () => {
 
     setContacts(contactsLists);
   };
-
 
   const handleChange = e => {
     const { value } = e.target;

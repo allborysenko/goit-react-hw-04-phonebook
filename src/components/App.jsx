@@ -34,13 +34,20 @@ export const App = () => {
     return filterContactsList;
   };
 
-  const handleSubmit = e => {
+  const handleSubmitContact = data => {
+
     const id = nanoid();
-    const name = e.name;
-    const number = e.number;
+    const name = data.name;
+    const number = data.number;
     const contactsLists = [...contacts];
 
-    if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
+
+
+    const alreadyYetContact = contactsLists.find(
+      contact => name === contact.name
+    );
+
+    if (alreadyYetContact) {
       alert(`${name} is already in contacts.`);
     } else {
       contactsLists.push({ name, id, number });
@@ -48,6 +55,7 @@ export const App = () => {
 
     setContacts(contactsLists);
   };
+
 
   const handleChange = e => {
     const { value } = e.target;
@@ -57,7 +65,7 @@ export const App = () => {
   return (
     <>
       <Section title="Phonebook">
-        <Contact onSubmit={handleSubmit} />
+        <Contact onSubmit={handleSubmitContact} />
       </Section>
       <Section title="Contacts">
         <Filter filter={filter} handleChange={handleChange} />

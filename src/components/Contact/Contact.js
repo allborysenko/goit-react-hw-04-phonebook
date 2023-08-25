@@ -1,9 +1,8 @@
 import { useState } from 'react';
-
 import PropTypes from 'prop-types';
 import { Label, Input, Button } from './Contact.styled';
 
-export const Contact = () => {
+export const Contact = ({ handleSubmitContact }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -13,17 +12,22 @@ export const Contact = () => {
   const changeNumber = event => {
     setNumber(event.target.value);
   };
-  const handleSubmit = e => {
+
+  const submitForm = e => {
+   
     e.preventDefault();
-    const form = e.currentTarget;
-    handleSubmit({ name: name, number: number });
-    form.reset();
+    // const form = e.currentTarget;
+    handleSubmitContact({ name, number });
+   
+
+    // form.reset();
     setName('');
     setNumber('');
   };
+ 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={submitForm}>
       <Label>
         Name
         <Input
